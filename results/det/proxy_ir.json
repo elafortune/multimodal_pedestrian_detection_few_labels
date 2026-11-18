@@ -1,0 +1,19 @@
+{
+  "name": "proxy_ir",
+  "train": [
+    "/workspace/bsa/configs/proxy/ir.txt"
+  ],
+  "epochs": 30,
+  "seed": 0,
+  "model": "yolo11s.pt",
+  "imgsz": 640,
+  "train_minutes": 22.6,
+  "eval": {
+    "ir": {
+      "map50": 0.9552669545385817,
+      "map50_95": 0.614182654031113,
+      "precision": 0.957299221323649,
+      "recall": 0.8885810648036617
+    }
+  }
+}

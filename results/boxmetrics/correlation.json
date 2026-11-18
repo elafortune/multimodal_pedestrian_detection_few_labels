@@ -1,0 +1,188 @@
+{
+  "n_sets": 11,
+  "usefulness": {
+    "T100_s1": 0.012282870038048833,
+    "p2p": 0.10360848535038106,
+    "T100_s1001": 0.24199216620790706,
+    "T1000_s1001": 0.2516816373886513,
+    "T100": 0.27142173139208203,
+    "T1000": 0.3375191953847481,
+    "gray": 0.4124978686002442,
+    "rgb": 0.41616854981667323,
+    "invgray": 0.4710189400314073,
+    "vae512": 0.580201207738932,
+    "ir": 0.614182654031113
+  },
+  "metrics": {
+    "fid": {
+      "label": "FID (global)",
+      "spearman": 0.8000000000000002,
+      "p_spearman": 0.0031104283103858456,
+      "kendall": 0.6727272727272727,
+      "p_kendall": 0.0031063111271444604,
+      "pearson": 0.8235432760715928,
+      "p_pearson": 0.0018356697332044078,
+      "loo_min": 0.7333333333333332,
+      "loo_max": 0.9151515151515152,
+      "spearman_generators_only": 0.942857142857143,
+      "n_generators": 6
+    },
+    "kid_x1000": {
+      "label": "KID (global)",
+      "spearman": 0.7545454545454545,
+      "p_spearman": 0.007282041008429154,
+      "kendall": 0.6000000000000001,
+      "p_kendall": 0.00994553671637005,
+      "pearson": 0.778338631328201,
+      "p_pearson": 0.004777283133156625,
+      "loo_min": 0.6727272727272726,
+      "loo_max": 0.8545454545454544,
+      "spearman_generators_only": 0.942857142857143,
+      "n_generators": 6
+    },
+    "fd_dinov2": {
+      "label": "FD-DINOv2 (global)",
+      "spearman": 0.9,
+      "p_spearman": 0.00015997142806871366,
+      "kendall": 0.7454545454545454,
+      "p_kendall": 0.000759529822029822,
+      "pearson": 0.8466463326222239,
+      "p_pearson": 0.0010112270348842118,
+      "loo_min": 0.8666666666666665,
+      "loo_max": 0.9272727272727272,
+      "spearman_generators_only": 0.8857142857142858,
+      "n_generators": 6
+    },
+    "fd_yolo": {
+      "label": "FD-YOLO-IR (global)",
+      "spearman": 0.15454545454545454,
+      "p_spearman": 0.6500339654975799,
+      "kendall": 0.1272727272727273,
+      "p_kendall": 0.6480954385121052,
+      "pearson": 0.5214413482159863,
+      "p_pearson": 0.09997163803244495,
+      "loo_min": -0.12727272727272726,
+      "loo_max": 0.29696969696969694,
+      "spearman_generators_only": 0.7142857142857143,
+      "n_generators": 6
+    },
+    "fid_box": {
+      "label": "FID (boxes)",
+      "spearman": 0.7272727272727273,
+      "p_spearman": 0.011204967253592074,
+      "kendall": 0.6363636363636364,
+      "p_kendall": 0.005707170915504249,
+      "pearson": 0.9160635577905911,
+      "p_pearson": 7.45011584849566e-05,
+      "loo_min": 0.6363636363636362,
+      "loo_max": 0.8666666666666665,
+      "spearman_generators_only": 0.942857142857143,
+      "n_generators": 6
+    },
+    "kid_box_x1000": {
+      "label": "KID (boxes)",
+      "spearman": 0.8545454545454546,
+      "p_spearman": 0.0008066741521648989,
+      "kendall": 0.7454545454545454,
+      "p_kendall": 0.000759529822029822,
+      "pearson": 0.9282399986516825,
+      "p_pearson": 3.7467475514316676e-05,
+      "loo_min": 0.8060606060606059,
+      "loo_max": 0.9515151515151514,
+      "spearman_generators_only": 0.942857142857143,
+      "n_generators": 6
+    },
+    "fd_dinov2_box": {
+      "label": "FD-DINOv2 (boxes)",
+      "spearman": 0.9363636363636365,
+      "p_spearman": 2.2082076449177507e-05,
+      "kendall": 0.8181818181818182,
+      "p_kendall": 0.00013227513227513228,
+      "pearson": 0.9808182555994838,
+      "p_pearson": 1.0676777465084011e-07,
+      "loo_min": 0.9151515151515152,
+      "loo_max": 0.9515151515151514,
+      "spearman_generators_only": 0.8285714285714287,
+      "n_generators": 6
+    },
+    "fd_yolo_box": {
+      "label": "FD-YOLO-IR (boxes)",
+      "spearman": 0.4909090909090909,
+      "p_spearman": 0.12520440713849548,
+      "kendall": 0.38181818181818183,
+      "p_kendall": 0.12097096961680295,
+      "pearson": 0.6320439422353055,
+      "p_pearson": 0.03694807191839187,
+      "loo_min": 0.32121212121212117,
+      "loo_max": 0.6242424242424242,
+      "spearman_generators_only": 0.942857142857143,
+      "n_generators": 6
+    },
+    "l1_box": {
+      "label": "paired L1 (boxes)",
+      "spearman": 0.28181818181818186,
+      "p_spearman": 0.40114489796047825,
+      "kendall": 0.2,
+      "p_kendall": 0.4453821448613115,
+      "pearson": 0.48177841467012283,
+      "p_pearson": 0.13347057107402757,
+      "loo_min": 0.04242424242424241,
+      "loo_max": 0.4787878787878787,
+      "spearman_generators_only": 0.5428571428571429,
+      "n_generators": 6
+    },
+    "contrast_err": {
+      "label": "contrast error (boxes)",
+      "spearman": 0.20909090909090913,
+      "p_spearman": 0.5372209352113227,
+      "kendall": 0.05454545454545454,
+      "p_kendall": 0.8792698312489979,
+      "pearson": 0.7006235095089245,
+      "p_pearson": 0.016333871899407514,
+      "loo_min": -0.05454545454545454,
+      "loo_max": 0.34545454545454546,
+      "spearman_generators_only": -0.14285714285714288,
+      "n_generators": 6
+    },
+    "contrast_corr": {
+      "label": "contrast corr. (boxes)",
+      "spearman": 0.4909090909090909,
+      "p_spearman": 0.12520440713849548,
+      "kendall": 0.38181818181818183,
+      "p_kendall": 0.12097096961680295,
+      "pearson": 0.6667880110716978,
+      "p_pearson": 0.025034833551589857,
+      "loo_min": 0.32121212121212117,
+      "loo_max": 0.6606060606060605,
+      "spearman_generators_only": 0.028571428571428574,
+      "n_generators": 6
+    },
+    "detect_map50_95": {
+      "label": "real-IR detector on set (mAP)",
+      "spearman": 0.5090909090909091,
+      "p_spearman": 0.10973723224165634,
+      "kendall": 0.45454545454545453,
+      "p_kendall": 0.06017015392015392,
+      "pearson": 0.6937390843723158,
+      "p_pearson": 0.017893860940484802,
+      "loo_min": 0.34545454545454546,
+      "loo_max": 0.6484848484848483,
+      "spearman_generators_only": 1.0,
+      "n_generators": 6
+    }
+  },
+  "proxy_vs_full": {
+    "rgb": [
+      0.41616854981667323,
+      0.46782547161487004
+    ],
+    "T100": [
+      0.27142173139208203,
+      0.3275264139950012
+    ],
+    "T1000": [
+      0.3375191953847481,
+      0.3839213799886601
+    ]
+  }
+}

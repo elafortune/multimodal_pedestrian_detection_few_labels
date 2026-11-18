@@ -1,0 +1,43 @@
+{
+  "name": "early_fusion_drop",
+  "train": [
+    "/workspace/bsa/data/fusion/train/images/train"
+  ],
+  "epochs": 30,
+  "seed": 0,
+  "model": "yolo11s.pt",
+  "imgsz": 640,
+  "train_minutes": 94.1,
+  "eval": {
+    "fusion:nominal": {
+      "map50": 0.9679472059999946,
+      "map50_95": 0.6508354611839511,
+      "precision": 0.966396636423313,
+      "recall": 0.9006649856121299
+    },
+    "fusion:rgb_fog": {
+      "map50": 0.951870852602787,
+      "map50_95": 0.6489240002056207,
+      "precision": 0.9573634902532565,
+      "recall": 0.8763094548473255
+    },
+    "fusion:rgb_lowlight": {
+      "map50": 0.9626669291014845,
+      "map50_95": 0.630429126283145,
+      "precision": 0.9642871435040455,
+      "recall": 0.8911475619107638
+    },
+    "fusion:rgb_dead": {
+      "map50": 0.9609808435597421,
+      "map50_95": 0.6260768730522761,
+      "precision": 0.9617838507688302,
+      "recall": 0.8942724360203659
+    },
+    "fusion:ir_dead": {
+      "map50": 0.8640114791336235,
+      "map50_95": 0.47096311550156916,
+      "precision": 0.9009034836422013,
+      "recall": 0.7774912323117812
+    }
+  }
+}

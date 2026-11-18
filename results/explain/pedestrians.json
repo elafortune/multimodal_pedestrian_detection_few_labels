@@ -1,0 +1,65 @@
+{
+  "n_pedestrians": 8302,
+  "recall": {
+    "real IR": 0.9300168634064081,
+    "resize512": 0.9327872801734521,
+    "vae512": 0.9245964827752349,
+    "vaefull": 0.9294145988918333,
+    "synthetic T100": 0.15285473379908457,
+    "synthetic T1000": 0.22356058781016622,
+    "RGB (rgb_full)": 0.8820766080462539
+  },
+  "vae512: lost among found on real IR": 0.016319129646418858,
+  "median features, kept vs lost (vae512)": {
+    "h": [
+      252.99968,
+      175.50028799999998
+    ],
+    "rgb_lum": [
+      0.13111193478107452,
+      0.12926173210144043
+    ],
+    "ir_con": [
+      0.03964972496032715,
+      0.016669675707817078
+    ]
+  },
+  "T1000: lost among found on real IR": 0.7638906877347493,
+  "T1000 lost: share also found by RGB detector on RGB": 0.894370973211258,
+  "T1000 lost: share also lost by vae512": 0.020176330959647337,
+  "crosstab RGB-found x T1000-found (among real-IR-found)": {
+    "rgb=True,t1000=True": 1804,
+    "rgb=True,t1000=False": 5275,
+    "rgb=False,t1000=True": 19,
+    "rgb=False,t1000=False": 623
+  },
+  "median features, kept vs lost (T1000)": {
+    "h": [
+      257.9998719999999,
+      250.00038399999994
+    ],
+    "rgb_lum": [
+      0.1798172891139984,
+      0.11730677261948586
+    ],
+    "rgb_con": [
+      -0.034818023443222046,
+      -0.005325591191649437
+    ],
+    "ir_con": [
+      0.0314764678478241,
+      0.04166574776172638
+    ],
+    "t1000_con": [
+      0.021804288029670715,
+      0.00846099853515625
+    ]
+  },
+  "logit lost~features (standardised coef)": {
+    "log_height": -0.25330659496845975,
+    "rgb_luminance": -0.458894018111864,
+    "rgb_contrast": 0.5872963633233612,
+    "ir_contrast": -0.06849621697442869
+  },
+  "logit AUC (in-sample)": 0.7242652427154849
+}

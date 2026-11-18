@@ -1,0 +1,19 @@
+{
+  "name": "ft_N25_s0_T100",
+  "train": [
+    "/workspace/bsa/splits/ir_train_N25_s0.txt"
+  ],
+  "epochs": 100,
+  "seed": 0,
+  "model": "/workspace/bsa/runs/det/synth_T100/weights/last.pt",
+  "imgsz": 640,
+  "train_minutes": 2.2,
+  "eval": {
+    "ir": {
+      "map50": 0.84714656702307,
+      "map50_95": 0.4703270949505107,
+      "precision": 0.8958891792885936,
+      "recall": 0.7545830991191421
+    }
+  }
+}

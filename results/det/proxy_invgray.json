@@ -1,0 +1,19 @@
+{
+  "name": "proxy_invgray",
+  "train": [
+    "/workspace/bsa/configs/proxy/invgray.txt"
+  ],
+  "epochs": 30,
+  "seed": 0,
+  "model": "yolo11s.pt",
+  "imgsz": 640,
+  "train_minutes": 19.9,
+  "eval": {
+    "ir": {
+      "map50": 0.8020284380990302,
+      "map50_95": 0.4710189400314073,
+      "precision": 0.9075757628130684,
+      "recall": 0.6978567762566188
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "proxy_p2p",
+  "train": [
+    "/workspace/bsa/configs/proxy/p2p.txt"
+  ],
+  "epochs": 30,
+  "seed": 0,
+  "model": "yolo11s.pt",
+  "imgsz": 640,
+  "train_minutes": 7.3,
+  "eval": {
+    "ir": {
+      "map50": 0.1948124967489876,
+      "map50_95": 0.10360848535038106,
+      "precision": 0.5018785357936517,
+      "recall": 0.17718622018790653
+    }
+  }
+}

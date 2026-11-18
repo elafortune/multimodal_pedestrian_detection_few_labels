@@ -1,0 +1,19 @@
+{
+  "name": "real_N100_s1",
+  "train": [
+    "/workspace/bsa/splits/ir_train_N100_s1.txt"
+  ],
+  "epochs": 100,
+  "seed": 1,
+  "model": "yolo11s.pt",
+  "imgsz": 640,
+  "train_minutes": 4.7,
+  "eval": {
+    "ir": {
+      "map50": 0.8622083814238932,
+      "map50_95": 0.50177392525477,
+      "precision": 0.8917825654046156,
+      "recall": 0.7701758612382559
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "mix_N10_s0_T100",
+  "train": [
+    "/workspace/bsa/splits/ir_train_N10_s0.txt",
+    "/workspace/bsa/data/synth/T100/images/train"
+  ],
+  "epochs": 30,
+  "seed": 0,
+  "model": "yolo11s.pt",
+  "imgsz": 640,
+  "train_minutes": 26.6,
+  "eval": {
+    "ir": {
+      "map50": 0.6934942176258512,
+      "map50_95": 0.3692541295068716,
+      "precision": 0.8263448217325169,
+      "recall": 0.593953264273669
+    }
+  }
+}

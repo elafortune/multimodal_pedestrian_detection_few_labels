@@ -1,0 +1,19 @@
+{
+  "name": "synth_T1000_fromRGB",
+  "train": [
+    "/workspace/bsa/data/synth/T1000/images/train"
+  ],
+  "epochs": 30,
+  "seed": 0,
+  "model": "/workspace/bsa/runs/det/rgb_full/weights/last.pt",
+  "imgsz": 640,
+  "train_minutes": 26.6,
+  "eval": {
+    "ir": {
+      "map50": 0.6791947344718754,
+      "map50_95": 0.3963979514128043,
+      "precision": 0.8909240554853168,
+      "recall": 0.5912939658895905
+    }
+  }
+}

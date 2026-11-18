@@ -1,0 +1,19 @@
+{
+  "name": "ft_N50_s0_PLf",
+  "train": [
+    "/workspace/bsa/splits/ir_train_N50_s0.txt"
+  ],
+  "epochs": 100,
+  "seed": 0,
+  "model": "/workspace/bsa/runs/det/pl_P1000f/weights/last.pt",
+  "imgsz": 640,
+  "train_minutes": 3.0,
+  "eval": {
+    "ir": {
+      "map50": 0.850141123811196,
+      "map50_95": 0.5007149496992608,
+      "precision": 0.9002632611869164,
+      "recall": 0.7705372199470008
+    }
+  }
+}

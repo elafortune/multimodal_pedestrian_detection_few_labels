@@ -1,0 +1,19 @@
+{
+  "name": "ft_N25_s1_PL",
+  "train": [
+    "/workspace/bsa/splits/ir_train_N25_s1.txt"
+  ],
+  "epochs": 100,
+  "seed": 1,
+  "model": "/workspace/bsa/runs/det/pl_P1000/weights/last.pt",
+  "imgsz": 640,
+  "train_minutes": 1.4,
+  "eval": {
+    "ir": {
+      "map50": 0.8144552134441847,
+      "map50_95": 0.4477996085927127,
+      "precision": 0.8429349284161016,
+      "recall": 0.739580823897856
+    }
+  }
+}

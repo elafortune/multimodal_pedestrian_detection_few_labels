@@ -1,0 +1,19 @@
+{
+  "name": "synth_T1000",
+  "train": [
+    "/workspace/bsa/data/synth/T1000/images/train"
+  ],
+  "epochs": 30,
+  "seed": 0,
+  "model": "yolo11s.pt",
+  "imgsz": 640,
+  "train_minutes": 45.7,
+  "eval": {
+    "ir": {
+      "map50": 0.6841907743091397,
+      "map50_95": 0.3839213799886601,
+      "precision": 0.8575902279356016,
+      "recall": 0.5855215610696218
+    }
+  }
+}

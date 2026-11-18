@@ -1,0 +1,19 @@
+{
+  "name": "real_N250_s0",
+  "train": [
+    "/workspace/bsa/splits/ir_train_N250_s0.txt"
+  ],
+  "epochs": 60,
+  "seed": 0,
+  "model": "yolo11s.pt",
+  "imgsz": 640,
+  "train_minutes": 8.9,
+  "eval": {
+    "ir": {
+      "map50": 0.8860838580086138,
+      "map50_95": 0.532214246033378,
+      "precision": 0.9193478834510014,
+      "recall": 0.7933028185979282
+    }
+  }
+}

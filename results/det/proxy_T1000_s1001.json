@@ -1,0 +1,19 @@
+{
+  "name": "proxy_T1000_s1001",
+  "train": [
+    "/workspace/bsa/configs/proxy/T1000_s1001.txt"
+  ],
+  "epochs": 30,
+  "seed": 0,
+  "model": "yolo11s.pt",
+  "imgsz": 640,
+  "train_minutes": 14.7,
+  "eval": {
+    "ir": {
+      "map50": 0.527443670066942,
+      "map50_95": 0.2516816373886513,
+      "precision": 0.7519948279588881,
+      "recall": 0.4689606629008154
+    }
+  }
+}

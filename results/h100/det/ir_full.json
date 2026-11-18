@@ -1,0 +1,19 @@
+{
+  "name": "ir_full",
+  "train": [
+    "/workspace/bsa/data/yolo/ir/images/train"
+  ],
+  "epochs": 30,
+  "seed": 0,
+  "model": "yolo11s.pt",
+  "imgsz": 640,
+  "train_minutes": 40.7,
+  "eval": {
+    "ir": {
+      "map50": 0.9576297787610358,
+      "map50_95": 0.6178041891288977,
+      "precision": 0.9538864764806068,
+      "recall": 0.8903878583473862
+    }
+  }
+}

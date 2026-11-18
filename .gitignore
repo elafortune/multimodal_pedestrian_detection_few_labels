@@ -1,0 +1,49 @@
+# --- data, weights, heavy artefacts (never versioned) ---
+data/
+runs/
+ckpt/
+weights/
+*.pt
+*.pkl
+*.engine
+*.onnx
+*.npy
+*.npz
+results/gap/*.npy
+results/h100/weights/
+
+# --- raw-frame figures (may contain unblurred people); only plots are published ---
+results/figures/*.jpg
+results/h100/figures/*.jpg
+
+# --- private working notes ---
+prompt_bsa_helsing.txt
+comprehension_projet.md
+proposition.md
+doc/avancement.md
+doc/runbook_runpod.md
+doc/script_for_ppt.md
+doc/script_video.md
+doc/slides_trame.md
+
+# --- slides: build outputs and QA renders ---
+slides/node_modules/
+slides/qa*/
+slides/BSA_nuit_IR_FR.pptx
+slides/BSA_nuit_IR_FR_v2.pptx
+slides/build_deck_v1.js
+~$*
+
+# --- one-off debug / incident scripts ---
+scripts/dbg_*.py
+scripts/fix_dup*.sh
+scripts/switch_final.sh
+scripts/restart_sets.sh
+
+# --- misc ---
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.DS_Store
+Thumbs.db
+logs/
