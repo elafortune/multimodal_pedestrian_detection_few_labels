@@ -279,6 +279,23 @@ A Gradio demo (`app/demo.py`) shows the three cases: nominal, IR declared dead, 
 
 The `queue_*.sh` files are the exact job queues that produced the results (tmux on the pod).
 
+**What is not in this repository.** The trained weights (YOLO detectors, pix2pix-turbo LoRA checkpoints, TensorRT engines), the LLVIP data and the cached features are not versioned (size, and LLVIP is redistributed only by its authors). Cloning the repository therefore does **not** give a runnable demo: the pipeline above must be run first, which is what produces `runs/det/*/weights/last.pt`, `ckpt/translator_N1000/` and `deploy/*.engine`.
+
+**Running the demo (`app/demo.py`).** Once the weights exist:
+
+```bash
+export BSA_ROOT=/workspace/bsa        # folder holding data/, runs/, ckpt/, deploy/, code/, img2img-turbo/
+python app/demo.py                     # http://localhost:7860
+DEMO_DEVICE=cpu python app/demo.py     # force the CPU fallback
+```
+
+| Hardware | What works |
+|---|---|
+| NVIDIA GPU (≈ 8 GB VRAM is enough for inference, CUDA 12) | everything: RGB / IR detectors (TensorRT if `deploy/*.engine` exists, else PyTorch), WBF fusion, sensor scenarios, **IR reconstructed by the generator** |
+| CPU only | RGB / IR detectors (PyTorch weights) and WBF fusion, fog / low-light scenarios, "IR dead → fall back to RGB". The **"reconstruct IR" mode is hidden**, because pix2pix-turbo (img2img-turbo) hard-codes CUDA; latencies are those of the CPU, not the 2.3 ms GPU figures |
+
+A cloud GPU was needed for **training** (A100 80 GB); inference only needs a consumer NVIDIA card, or a CPU for detection and fusion.
+
 **Slides.** `slides/build_deck*.js` generate the decks with `pptxgenjs` (`npm install` in `slides/`). They use a theme helper passed through the `PPTX_SKILL` environment variable. `slides/make_assets.py` builds the images, with heads blurred.
 
 ---

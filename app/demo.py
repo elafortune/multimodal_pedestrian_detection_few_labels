@@ -6,7 +6,10 @@ Pipeline per frame:  RGB (+ real IR if the sensor is up)
    -> side-by-side view, per-stage latency.
 Privacy: the top of every detected person box is blurred on the RGB views (no identifiable faces).
 
-Env: BSA_ROOT (default /workspace/bsa), DEMO_TRANSLATOR (ckpt .pkl), DEMO_PORT (7860)
+CPU fallback: without a CUDA GPU (or with DEMO_DEVICE=cpu) the detectors and the fusion run on CPU with the
+PyTorch weights; the "reconstruct IR" mode is hidden because pix2pix-turbo (img2img-turbo) hard-codes CUDA.
+
+Env: BSA_ROOT (default /workspace/bsa), DEMO_TRANSLATOR (ckpt .pkl), DEMO_PORT (7860), DEMO_DEVICE (cuda|cpu)
 """
 import os
 import sys
@@ -32,11 +35,20 @@ TEST_RGB, TEST_IR = ROOT / "data/yolo/rgb/images/test", ROOT / "data/yolo/ir/ima
 TEST_LBL = ROOT / "data/yolo/ir/labels/test"
 CONF = 0.35
 IR_MODES = ["IR ok", "IR dead -> declare missing (fall back to RGB)", "IR dead -> reconstruct IR from RGB"]
+DEVICE = os.environ.get("DEMO_DEVICE") or ("cuda" if torch.cuda.is_available() else "cpu")
+GPU = DEVICE.startswith("cuda") and torch.cuda.is_available()
+UI_MODES = IR_MODES if GPU else IR_MODES[:2]  # generator needs CUDA
+HW = torch.cuda.get_device_name(0) if GPU else "CPU (generator disabled)"
+
+
+def sync():
+    if GPU:
+        torch.cuda.synchronize()
 
 
 def load_detector(name):
     eng = ROOT / "deploy" / f"{name}_fp16.engine"
-    if eng.exists():
+    if GPU and eng.exists():  # TensorRT engines only run on the GPU they were built for
         return YOLO(str(eng), task="detect"), "TensorRT FP16"
     return YOLO(str(ROOT / "runs/det" / name / "weights/last.pt")), "PyTorch"
 
@@ -72,7 +84,7 @@ def reconstruct_ir(rgb_bgr):
 
 
 def detect(model, img):
-    r = model.predict(img, imgsz=640, conf=0.001, iou=0.7, verbose=False)[0]
+    r = model.predict(img, imgsz=640, conf=0.001, iou=0.7, device=DEVICE, verbose=False)[0]
     return np.concatenate([r.boxes.xyxy.cpu().numpy(), r.boxes.conf.cpu().numpy()[:, None]], 1), r.speed["inference"]
 
 
@@ -128,10 +140,12 @@ def process(rgb, ir, ir_down, rgb_degrade, gt=np.zeros((0, 5))):
     # ir_down: IR_MODES[0] = IR ok, [1] = IR dead -> declared missing (fusion falls back to RGB),
     #          [2] = IR dead -> reconstructed from RGB by the generator (shown to be worse, see doc P20)
     mode = IR_MODES.index(ir_down) if ir_down in IR_MODES else 0
+    if mode == 2 and not GPU:
+        raise gr.Error("IR reconstruction needs a CUDA GPU (pix2pix-turbo).")
     if mode == 2:
-        torch.cuda.synchronize(); t0 = time.perf_counter()
+        sync(); t0 = time.perf_counter()
         ir = reconstruct_ir(rgb)
-        torch.cuda.synchronize(); t["RGB->IR generator"] = (time.perf_counter() - t0) * 1000
+        sync(); t["RGB->IR generator"] = (time.perf_counter() - t0) * 1000
     ir3 = cv2.cvtColor(ir, cv2.COLOR_GRAY2BGR) if ir.ndim == 2 else ir
     b_rgb, t["RGB detector"] = detect(DET_RGB, rgb)
     if mode == 1:
@@ -163,7 +177,7 @@ def run_frame(stem, ir_down, rgb_degrade):
     ir = cv2.imread(str(TEST_IR / f"{stem}.jpg"), cv2.IMREAD_GRAYSCALE)
     v_rgb, v_ir, v_fus, t = process(rgb, ir, ir_down, rgb_degrade, gt_boxes(stem, rgb.shape[1], rgb.shape[0]))
     lat = "\n".join(f"| {k} | {v:.1f} ms |" for k, v in t.items())
-    md = f"| stage | latency |\n|---|---|\n{lat}\n\nDetectors: RGB = {BACK_RGB}, IR = {BACK_IR} · GPU: {torch.cuda.get_device_name(0)}"
+    md = f"| stage | latency |\n|---|---|\n{lat}\n\nDetectors: RGB = {BACK_RGB}, IR = {BACK_IR} · device: {HW}"
     return to_rgb(v_rgb), to_rgb(v_ir), to_rgb(v_fus), md
 
 
@@ -193,7 +207,7 @@ with gr.Blocks(title="Seeing at night without night data") as demo:
                 "and multimodal fusion robust to a failed sensor. LLVIP test set (scenes never seen in training).")
     with gr.Row():
         stem = gr.Dropdown(STEMS, value=STEMS[len(STEMS) // 3], label="LLVIP test frame")
-        ir_down = gr.Radio(IR_MODES, value=IR_MODES[0], label="IR sensor")
+        ir_down = gr.Radio(UI_MODES, value=UI_MODES[0], label="IR sensor")
         degrade = gr.Radio(["none", "fog / smoke", "darker + noise"], value="none", label="RGB degradation")
     btn = gr.Button("Run", variant="primary")
     with gr.Row():
@@ -207,5 +221,8 @@ with gr.Blocks(title="Seeing at night without night data") as demo:
         vbtn.click(run_sequence, [stem, n, ir_down, degrade], vid)
 
 if __name__ == "__main__":
-    print("warm-up (loads the generator once, ~30 s)"); run_frame(STEMS[0], IR_MODES[2], "none"); run_frame(STEMS[0], IR_MODES[0], "none")
+    print(f"device: {HW}")
+    if GPU:
+        print("warm-up (loads the generator once, ~30 s)"); run_frame(STEMS[0], IR_MODES[2], "none")
+    run_frame(STEMS[0], IR_MODES[0], "none")
     demo.launch(server_name="0.0.0.0", server_port=int(os.environ.get("DEMO_PORT", 7860)))
