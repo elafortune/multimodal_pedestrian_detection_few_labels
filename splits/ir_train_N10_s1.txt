@@ -1,0 +1,10 @@
+/workspace/bsa/data/yolo/ir/images/train/030320.jpg
+/workspace/bsa/data/yolo/ir/images/train/040218.jpg
+/workspace/bsa/data/yolo/ir/images/train/050384.jpg
+/workspace/bsa/data/yolo/ir/images/train/080500.jpg
+/workspace/bsa/data/yolo/ir/images/train/081174.jpg
+/workspace/bsa/data/yolo/ir/images/train/090390.jpg
+/workspace/bsa/data/yolo/ir/images/train/110376.jpg
+/workspace/bsa/data/yolo/ir/images/train/120079.jpg
+/workspace/bsa/data/yolo/ir/images/train/140139.jpg
+/workspace/bsa/data/yolo/ir/images/train/250268.jpg

@@ -1,0 +1,6 @@
+train:
+  - /workspace/bsa/configs/proxy/T100.txt
+val: /workspace/bsa/data/yolo/ir/images/test
+channels: 3
+names:
+  0: person

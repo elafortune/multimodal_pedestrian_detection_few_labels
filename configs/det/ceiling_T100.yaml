@@ -1,0 +1,4 @@
+train: /workspace/bsa/data/synth/T100/images/test
+val: /workspace/bsa/data/synth/T100/images/test
+names:
+  0: person

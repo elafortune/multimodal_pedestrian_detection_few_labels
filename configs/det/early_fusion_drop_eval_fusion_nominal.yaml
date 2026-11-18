@@ -1,0 +1,6 @@
+train:
+  - /workspace/bsa/data/fusion/train/images/train
+val: /workspace/bsa/data/fusion/nominal/images/test
+channels: 4
+names:
+  0: person

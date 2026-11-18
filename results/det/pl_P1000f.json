@@ -1,0 +1,19 @@
+{
+  "name": "pl_P1000f",
+  "train": [
+    "/workspace/bsa/data/pl/P1000f/images/train"
+  ],
+  "epochs": 40,
+  "seed": 0,
+  "model": "yolo11s.pt",
+  "imgsz": 640,
+  "train_minutes": 38.4,
+  "eval": {
+    "ir": {
+      "map50": 0.8362617097589946,
+      "map50_95": 0.5233118124301159,
+      "precision": 0.8950381277358992,
+      "recall": 0.7476511683931583
+    }
+  }
+}

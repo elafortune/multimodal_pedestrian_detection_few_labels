@@ -1,0 +1,6 @@
+train:
+  - /workspace/bsa/data/pl/P100/images/train
+val: /workspace/bsa/data/yolo/ir/images/test
+channels: 3
+names:
+  0: person

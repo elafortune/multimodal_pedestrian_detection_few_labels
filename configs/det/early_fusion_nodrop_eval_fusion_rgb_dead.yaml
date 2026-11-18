@@ -1,0 +1,6 @@
+train:
+  - /workspace/bsa/data/fusion/train_nodrop/images/train
+val: /workspace/bsa/data/fusion/rgb_dead/images/test
+channels: 4
+names:
+  0: person

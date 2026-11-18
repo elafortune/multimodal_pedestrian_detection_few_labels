@@ -1,0 +1,4 @@
+train: /workspace/bsa/data/synth/resize512/images/test
+val: /workspace/bsa/data/synth/resize512/images/test
+names:
+  0: person

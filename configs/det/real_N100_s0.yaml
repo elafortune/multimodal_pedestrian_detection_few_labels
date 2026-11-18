@@ -1,0 +1,5 @@
+train:
+  - /workspace/bsa/splits/ir_train_N100_s0.txt
+val: /workspace/bsa/data/yolo/ir/images/test
+names:
+  0: person

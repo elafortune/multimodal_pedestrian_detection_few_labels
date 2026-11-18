@@ -279,7 +279,16 @@ A Gradio demo (`app/demo.py`) shows the three cases: nominal, IR declared dead, 
 
 The `queue_*.sh` files are the exact job queues that produced the results (tmux on the pod).
 
-**What is not in this repository.** The trained weights (YOLO detectors, pix2pix-turbo LoRA checkpoints, TensorRT engines), the LLVIP data and the cached features are not versioned (size, and LLVIP is redistributed only by its authors). Cloning the repository therefore does **not** give a runnable demo: the pipeline above must be run first, which is what produces `runs/det/*/weights/last.pt`, `ckpt/translator_N1000/` and `deploy/*.engine`.
+**What is not in this repository.** The trained weights (YOLO detectors, pix2pix-turbo LoRA checkpoints, TensorRT engines), the LLVIP data and the cached features are not versioned (size, and LLVIP is redistributed only by its authors). Cloning the repository alone does **not** give a runnable demo: download the trained weights from the [`weights-v1` release](https://github.com/elafortune/multimodal_pedestrian_detection_few_labels/releases/tag/weights-v1), or re-run the pipeline above.
+
+```bash
+cd $BSA_ROOT
+curl -LO https://github.com/elafortune/multimodal_pedestrian_detection_few_labels/releases/download/weights-v1/bsa_weights_v1.tar
+sha256sum bsa_weights_v1.tar   # 6c163f31df10106e001ccbbb488a3a9cf80eec298dc156733360f7aac57e3ac7
+tar -xf bsa_weights_v1.tar      # -> runs/det/<model>/weights/last.pt, ckpt/translator_N1000|N100/checkpoints/*.pkl
+```
+
+The archive (191 MB) holds the demo detectors (`rgb_full`, `ir_full`), early fusion with / without modality dropout, the pseudo-labelling detector (`pl_P1000`), the 1,000 real-label baseline (`real_N1000_s0`), the generated-IR models (`synth_T1000`, `mix_N1000_s0`) and the two pix2pix-turbo LoRA checkpoints (SD-Turbo itself is fetched from Hugging Face on first use). TensorRT engines are GPU-specific: rebuild them with `scripts/08_export_trt.py`. The LLVIP test images are still needed for the demo (official LLVIP release).
 
 **Running the demo (`app/demo.py`).** Once the weights exist:
 

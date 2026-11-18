@@ -1,0 +1,4 @@
+train: /workspace/bsa/data/yolo/ir/images/test
+val: /workspace/bsa/data/yolo/ir/images/test
+names:
+  0: person
